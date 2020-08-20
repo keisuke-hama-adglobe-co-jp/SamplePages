@@ -24,12 +24,27 @@
           return window.navigator.userAgent.indexOf('Sample-Android-App') !== -1;
         }
       }
+
+      var isOn = false;
+      function starClick() {
+        if (isOn) {
+          document.getElementById('img_bookmark').src = "images/star_off.png";
+          isOn = false;
+        } else {
+          document.getElementById('img_bookmark').src = "images/star_on.png";
+          isOn = true;
+        }
+        NativeBridge.send("bookmark", "change")
+      }
     </script>
   </head>
-  <body>
+  <body style="padding: 50px;">
     
-    <div style="margin-top: 50px;">タグ</div><br>
-    message.name: tag
+    <div>ブックマーク<br>message.name: bookmark</div>
+    <img id="img_bookmark" onclick="starClick()" src="images/star_off.png" width="32px" height="32px" />
+
+    <div style="margin-top: 50px;">タグ<br>
+      message.name: tag</div>
     <table>
       <tr>
         <td><span onclick="NativeBridge.send('tag', '安西')">安西</span></td>
