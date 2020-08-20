@@ -2,26 +2,52 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="generator" content="GitLab Pages">
-    <title>Plain HTML site using GitLab Pages</title>
+    <title>Sample Pages</title>
     <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="navbar">
-      <a href="https://pages.gitlab.io/plain-html/">Plain HTML Example</a>
-      <a href="https://gitlab.com/pages/plain-html/">Repository</a>
-      <a href="https://gitlab.com/pages/">Other Examples</a>
-    </div>
 
     <script>
-      alert("アラートが表示されたならjava scriptは動くっぽいぞ")
+      var NativeBridge = {
+        send: function(methodName, args) {
+          if (this.isIOS()) {
+            window.webkit.messageHandlers[methodName].postMessage(args);
+          } else if (this.isAndroid()) {
+            MyApp[methodName](args);
+          } else {
+            alert(args)
+          }
+        },
+
+        isIOS: function() {
+          return window.navigator.userAgent.indexOf('Sample-iOS-App') !== -1;
+        },
+        isAndroid: function() {
+          return window.navigator.userAgent.indexOf('Sample-Android-App') !== -1;
+        }
+      }
     </script>
+  </head>
+  <body>
+    
+    <div style="margin-top: 50px;">タグ</div><br>
+    message.name: tag
+    <table>
+      <tr>
+        <td><span onclick="NativeBridge.send('tag', '安西')">安西</span></td>
+        <td><span onclick="NativeBridge.send('tag', '伊藤')">伊藤</span></td>
+        <td><span onclick="NativeBridge.send('tag', '上田')">上田</span></td>
+      </tr>
+      <tr>
+        <td><span onclick="NativeBridge.send('tag', '江坂')">江坂</span></td>
+        <td><span onclick="NativeBridge.send('tag', '大城')">大城</span></td>
+        <td><span onclick="NativeBridge.send('tag', '加瀬')">加瀬</span></td>
+      </tr>
+      <tr>
+        <td><span onclick="NativeBridge.send('tag', '木野')">木野</span></td>
+        <td><span onclick="NativeBridge.send('tag', '工藤')">工藤</span></td>
+        <td><span onclick="NativeBridge.send('tag', '剣持')">剣持</span></td>
+      </tr>
+    </table>
 
-    <h1>Hello World!</h1>
-
-    <p>
-      This is a simple plain-HTML website on GitLab Pages, without any fancy static site generator.
-    </p>
   </body>
 </html>
 
