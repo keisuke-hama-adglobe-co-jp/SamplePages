@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="style.css">
 
     <script>
+      window.onload = function onload() {
+        target = document.getElementById("output");
+        target.innerHTML = document.cookie
+      }
+
       var NativeBridge = {
         send: function(methodName, args) {
           if (this.isIOS()) {
@@ -17,24 +22,37 @@
           }
         },
 
+        link: function(methodName, args) {
+          if (this.isIOS()) {
+            window.webkit.messageHandlers[methodName].postMessage("{url:\"" + args + "\"}");
+          } else if (this.isAndroid()) {
+            MyApp[methodName]("{url:\"" + args + "\"}");
+          } else {
+            window.location.href = args
+          }
+        },
+
         isIOS: function() {
-          return window.navigator.userAgent.indexOf('Sample-iOS-App') !== -1;
+          return /iOS-App/.test(window.navigator.userAgent);
         },
         isAndroid: function() {
-          return window.navigator.userAgent.indexOf('Sample-Android-App') !== -1;
+          return /Android-App/.test(window.navigator.userAgent);
         }
       }
 
       var isOn = false;
       function starClick() {
+        var onOff = "on"
         if (isOn) {
           document.getElementById('img_bookmark').src = "images/star_off.png";
           isOn = false;
+          onOff = "off"
         } else {
           document.getElementById('img_bookmark').src = "images/star_on.png";
           isOn = true;
+          onOff = "on"
         }
-        NativeBridge.send("bookmark", "change")
+        NativeBridge.send("bookmark", "{topics_id:0,bookmark:\"" + onOff + "\"}")
       }
     </script>
   </head>
@@ -47,28 +65,30 @@
       message.name: tag</div>
     <table>
       <tr>
-        <td><span onclick="NativeBridge.send('tag', '安西')">安西</span></td>
-        <td><span onclick="NativeBridge.send('tag', '伊藤')">伊藤</span></td>
-        <td><span onclick="NativeBridge.send('tag', '上田')">上田</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;安西&quot;}')">安西</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;伊藤&quot;}')">伊藤</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;上田&quot;}')">上田</span></td>
       </tr>
       <tr>
-        <td><span onclick="NativeBridge.send('tag', '江坂')">江坂</span></td>
-        <td><span onclick="NativeBridge.send('tag', '大城')">大城</span></td>
-        <td><span onclick="NativeBridge.send('tag', '加瀬')">加瀬</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;江坂&quot;}')">江坂</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;大城&quot;}')">大城</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;加瀬&quot;}')">加瀬</span></td>
       </tr>
       <tr>
-        <td><span onclick="NativeBridge.send('tag', '木野')">木野</span></td>
-        <td><span onclick="NativeBridge.send('tag', '工藤')">工藤</span></td>
-        <td><span onclick="NativeBridge.send('tag', '剣持')">剣持</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;木野&quot;}')">木野</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;工藤&quot;}')">工藤</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;剣持&quot;}')">剣持</span></td>
       </tr>
     </table>
 
     <div style="margin-top: 50px;">内部リンク(暫定)</div>
-    <a href="./moved.html">遷移</a>
+    <span onclick="NativeBridge.link('inboundLink', 'https\:\/\/keisuke-hama-adglobe-co-jp.github.io\/SamplePages\/moved.html')">遷移</span>
 
     <div style="margin-top: 50px;">外部リンク(暫定)</div>
-    <a href="https://www.google.com/">Google</a>
+    <span onclick="NativeBridge.link('inboundLink', 'https\:\/\/www.google.com\/')">Google</span>
 
+    <div style="margin-top: 50px;">クッキー🍪</div>
+    <div class="contents" id="output"></div>
   </body>
 </html>
 
