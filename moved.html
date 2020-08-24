@@ -4,6 +4,38 @@
         <meta charset="utf-8">
         <title>遷移したページ</title>
         <link rel="stylesheet" href="style2.css">
+
+        <script>
+            window.onload = function onLoad() {
+                target = document.getElementById("output");
+                target.innerHTML = document.cookie
+            }
+
+            var NativeBridge = {
+            send: function(methodName, args) {
+                if (this.isIOS()) {
+                    window.webkit.messageHandlers[methodName].postMessage(args);
+                } else if (this.isAndroid()) {
+                    MyApp[methodName](args);
+                } else {
+                    alert(args)
+                }
+            },
+
+            isIOS: function() {
+                return /iOS-App/.test(window.navigator.userAgent);
+            },
+            isAndroid: function() {
+                return /Android-App/.test(window.navigator.userAgent);
+            }
+            }
+        </script>
     </head>
-    <body></body>
+    <body style="padding: 50px;">
+        <div>タグ<br>
+        <span onclick="NativeBridge.send('hashtag', '{tag:&quot;moved安西&quot;}')">moved安西</span>
+
+        <div style="margin-top: 50px;">クッキー🍪</div>
+        <div class="contents" id="output"></div>
+    </body>
 </html>
