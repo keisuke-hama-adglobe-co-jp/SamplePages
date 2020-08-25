@@ -22,14 +22,22 @@
           }
         },
 
-        link: function(methodName, args) {
+        link: function(methodName, args, link) {
           if (this.isIOS()) {
-            window.webkit.messageHandlers[methodName].postMessage("{url:\"" + args + "\"}");
+            window.webkit.messageHandlers[methodName].postMessage(args);
           } else if (this.isAndroid()) {
-            MyApp[methodName]("{url:\"" + args + "\"}");
+            MyApp[methodName](args);
           } else {
-            window.location.href = args
+            window.location.href = link
           }
+        },
+
+        internalLink: function(id, url) {
+          this.link("relatedLink", "{topics_id:" + id + "url:\"" + url + "\"}", url)
+        },
+
+        externalLink: function(url) {
+          this.link("externalLink", "{url:\"" + url + "\"}", url)
         },
 
         isIOS: function() {
@@ -82,13 +90,16 @@
     </table>
 
     <div style="margin-top: 50px;">内部リンク(暫定)</div>
-    <span onclick="NativeBridge.link('inboundLink', 'https\:\/\/keisuke-hama-adglobe-co-jp.github.io\/SamplePages\/moved.html')">遷移</span>
+    <span onclick="NativeBridge.internalLink(0, 'https\:\/\/keisuke-hama-adglobe-co-jp.github.io\/SamplePages\/moved.html')">遷移</span>
 
     <div style="margin-top: 50px;">外部リンク(暫定)</div>
-    <span onclick="NativeBridge.link('externalLink', 'https\:\/\/www.google.com\/')">Google</span>
+    <span onclick="NativeBridge.externalLink('https\:\/\/www.google.com\/')">Google</span>
 
     <div style="margin-top: 50px;">クッキー🍪</div>
     <div class="contents" id="output"></div>
+
+    <div style="margin-top: 50px;">スクロール可能にするための画像</div>
+    <img src="https://placehold.jp/3d4070/ffffff/100x500.png?text=Sample%20Image" width="100%" />
   </body>
 </html>
 
