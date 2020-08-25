@@ -33,11 +33,11 @@
         },
 
         internalLink: function(id, url) {
-          this.link("relatedLink", "{topics_id:" + id + ",url:\"" + url + "\"}", url)
+          this.link("relatedLink", "{\"topics_id\":" + id + ",\"url\":\"" + url + "\"}", url)
         },
 
         externalLink: function(url) {
-          this.link("externalLink", "{url:\"" + url + "\"}", url)
+          this.link("externalLink", "{\"url\":\"" + url + "\"}", url)
         },
 
         isIOS: function() {
@@ -60,7 +60,7 @@
           isOn = true;
           onOff = "on"
         }
-        NativeBridge.send("bookmark", "{topics_id:0,bookmark:\"" + onOff + "\"}")
+        NativeBridge.send("bookmark", "{\"topics_id\":0,\"bookmark\":\"" + onOff + "\"}")
       }
     </script>
   </head>
@@ -73,19 +73,19 @@
       message.name: tag</div>
     <table>
       <tr>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;安西&quot;}')">安西</span></td>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;伊藤&quot;}')">伊藤</span></td>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;上田&quot;}')">上田</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;安西&quot;}')">安西</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;伊藤&quot;}')">伊藤</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;上田&quot;}')">上田</span></td>
       </tr>
       <tr>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;江坂&quot;}')">江坂</span></td>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;大城&quot;}')">大城</span></td>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;加瀬&quot;}')">加瀬</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;江坂&quot;}')">江坂</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;大城&quot;}')">大城</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;加瀬&quot;}')">加瀬</span></td>
       </tr>
       <tr>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;木野&quot;}')">木野</span></td>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;工藤&quot;}')">工藤</span></td>
-        <td><span onclick="NativeBridge.send('hashtag', '{tag:&quot;剣持&quot;}')">剣持</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;木野&quot;}')">木野</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;工藤&quot;}')">工藤</span></td>
+        <td><span onclick="NativeBridge.send('hashtag', '{&quot;tag&quot;:&quot;剣持&quot;}')">剣持</span></td>
       </tr>
     </table>
 
