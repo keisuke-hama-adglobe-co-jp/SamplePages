@@ -11,6 +11,11 @@
         target.innerHTML = document.cookie
       }
 
+      function externalInput(arg) {
+        target = document.getElementById("external_input")
+        target.innerHTML = arg
+      }
+
       var NativeBridge = {
         send: function(methodName, args) {
           if (this.isIOS()) {
@@ -66,7 +71,10 @@
   </head>
   <body style="padding: 50px;">
     
-    <div>ブックマーク<br>message.name: bookmark</div>
+    <div>外部から送信されたものが表示される場所</div>
+    <div class="external" id="external_input"></div>
+
+    <div style="margin-top: 50px;">ブックマーク<br>message.name: bookmark</div>
     <img id="img_bookmark" onclick="starClick()" src="images/star_off.png" width="32px" height="32px" />
 
     <div style="margin-top: 50px;">タグ<br>
