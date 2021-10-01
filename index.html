@@ -67,12 +67,24 @@
         }
         NativeBridge.send("bookmark", "{\"topics_id\":0,\"bookmark\":\"" + onOff + "\"}")
       }
+
+      function openExBrowserAndroid() {
+        window.location.href="intent://www.google.com#Intent;scheme=http;action=android.intent.action.VIEW;end";
+        // window.location.href="https://www.google.com/";
+      }
+      function openExBrowseriOS() {
+        window.location.href = 'http://www.yahoo.co.jp/';
+      }
     </script>
   </head>
   <body style="padding: 50px;">
     
     <div>外部から送信されたものが表示される場所</div>
     <div class="external" id="external_input"></div>
+
+    <div style="margin-top: 50px;">サンプルリンク？</div>
+    <div onclick="openExBrowserAndroid()" style="margin-top: 25px;">★☆★Android用サンプルリンク★☆★</div>
+    <div onclick="openExBrowseriOS()" style="margin-top: 25px;">☆★☆iOS用サンプルリンク☆★☆</div>
 
     <div style="margin-top: 50px;">ブックマーク<br>message.name: bookmark</div>
     <img id="img_bookmark" onclick="starClick()" src="images/star_off.png" width="32px" height="32px" />
