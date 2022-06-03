@@ -78,16 +78,16 @@
         window.location.href = 'https://www.yahoo.co.jp/';
       }
 
-      function showMessage(message) {
+      function showMessage(message, message2) {
         target = document.getElementById("show_message_test");
-        target.innerHTML = message;
+        target.innerHTML = message + message2;
       }
     </script>
   </head>
   <body style="padding: 50px;">
     
     <div>外部から送信されたものが表示される場所</div>
-    <div onclick="showMessage('あう')" class="external" id="external_input"></div>
+    <div onclick="showMessage('あい', 'うえ')" class="external" id="external_input"></div>
 
     <div class="showMessageTest" id="show_message_test"></div>
 
