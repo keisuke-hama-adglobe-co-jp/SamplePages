@@ -78,15 +78,18 @@
         window.location.href = 'https://www.yahoo.co.jp/';
       }
 
-      function showAlert(message) {
-        window.alert(message);
+      function showMessage(message) {
+        target = document.getElementById("show_message_test");
+        target.innerHTML = message;
       }
     </script>
   </head>
   <body style="padding: 50px;">
     
     <div>外部から送信されたものが表示される場所</div>
-    <div onclick="showAlert('あう')" class="external" id="external_input"></div>
+    <div onclick="showMessage('あう')" class="external" id="external_input"></div>
+
+    <div class="showMessageTest" id="show_message_test"></div>
 
     <div style="margin-top: 50px;">サンプルリンク？</div>
     <div onclick="openExBrowserAndroid()" style="margin-top: 25px;">★☆★Android用サンプルリンク★☆★</div>
