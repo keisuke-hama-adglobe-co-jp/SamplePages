@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>404</title>
+        <script>
+            window.onload = function onload() {
+                document.getElementById("accessPath").innerHTML = location.href;
+                document.getElementById("query").innerHTML = location.search;
+                document.getElementById("agent").innerHTML = window.navigator.userAgent;
+                document.getElementById("cookie").innerHTML = document.cookie;
+            }
+        </script>
+    </head>
+    <body>
+        <table style="margin-top: 2.5%; margin-left: 2.5%; margin-right: 2.5%; width: 95%;">
+            <tr>
+                <th style="background-color: #b94047; color: #ffffff; padding: 5px; border: 1px solid #000000;">Access Path</th> <td style="padding: 5px; border: 1px solid #000000;"><div id="accessPath"></div></td>
+            </tr>
+            <tr>
+                <th style="background-color: #b94047; color: #ffffff; padding: 5px; border: 1px solid #000000;">Query</th> <td style="padding: 5px; border: 1px solid #000000;"><div id="query"></div></td>
+            </tr>
+            <tr>
+                <th style="background-color: #b94047; color: #ffffff; padding: 5px; border: 1px solid #000000;">UserAgent</th> <td style="padding: 5px; border: 1px solid #000000;"><div id="agent"></div></td>
+            </tr>
+            <tr>
+                <th style="background-color: #b94047; color: #ffffff; padding: 5px; border: 1px solid #000000;">Cookie</th> <td style="padding: 5px; border: 1px solid #000000;"><div id="cookie"></div></td>
+            </tr>
+        </table>
+    </body>
+</html>
