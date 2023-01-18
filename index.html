@@ -18,6 +18,10 @@
         target.innerHTML = arg
       }
 
+      function hoge() {
+        window.close()
+      }
+
       var NativeBridge = {
         send: function(methodName, args) {
           if (this.isIOS()) {
@@ -90,6 +94,9 @@
     <div onclick="showMessage('あい', 'うえ')" class="external" id="external_input"></div>
 
     <div class="showMessageTest" id="show_message_test"></div>
+
+    <div style="margin-top: 50px;"></div>
+    <div onclick="hoge()">閉じる</div>
 
     <div style="margin-top: 50px;">サンプルリンク？</div>
     <div onclick="openExBrowserAndroid()" style="margin-top: 25px;">★☆★Android用サンプルリンク★☆★</div>
