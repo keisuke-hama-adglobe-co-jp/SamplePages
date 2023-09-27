@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>sample page</title>
+
+        <script>
+
+            function hoge() {
+                window.setTimeout(function() {
+                    // alert('aaa');
+                    window.flutter_inappwebview.callHandler('fuga', 'piyo');
+                }, 10000);
+            }
+
+        </script>
+    </head>
+    <body onload="hoge();">
+    </body>
+</html>
