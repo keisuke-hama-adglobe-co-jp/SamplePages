@@ -52,6 +52,10 @@
           this.link("externalLink", "{\"url\":\"" + url + "\"}", url)
         },
 
+        questionnaire: function() {
+          this.link("questionnaire", "", "")
+        },
+
         isIOS: function() {
           return /iOS-App/.test(window.navigator.userAgent);
         },
@@ -133,6 +137,10 @@
 
     <div style="margin-top: 50px;">外部リンク(暫定)</div>
     <span onclick="NativeBridge.externalLink('https\:\/\/www.google.com\/')">Google</span>
+
+     <div style="margin-top: 50px;">ブラウザ閉じる(暫定)</div>
+    <span onclick="NativeBridge.questionnaire()">ブラウザを閉じる</span>
+
 
     <div style="margin-top: 50px;">クッキー🍪</div>
     <div class="contents" id="output"></div>
